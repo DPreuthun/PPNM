@@ -9,12 +9,12 @@ int main() {
     // A2
     std::cout << std::fixed << std::setprecision(6);
     
-    std::cout << "A2:" << "\n";
+    std::cout << "\n" << "A2:" << "\n";
 
     // Generate random tall matrix A2
     pp::matrix A2 = pp::random_int_matrix(4,3,1,10);
 
-    std::cout << "A2 = " << "\n" << A2 << "\n";
+    std::cout << "A = " << "\n" << A2 << "\n";
 
     // Factorise into QR and check that R is upper triangular
     pp::QR qr2(A2);
@@ -33,12 +33,12 @@ int main() {
     std::cout << "Q * R = " << "\n" << Q2 * R2 << "\n";
 
     // A3
-    std::cout << "A3:" << "\n";
+    std::cout << "\n" << "A3:" << "\n";
 
     // Generate a random square matrix A3
     pp::matrix A3 = pp::random_int_matrix(3,3,1,10);
 
-    std::cout << "A3 = " << "\n" << A3 << "\n";
+    std::cout << "A = " << "\n" << A3 << "\n";
 
     // Generate a random vector b
     pp::vector b = pp::random_int_vector(3,1,10);
@@ -56,7 +56,7 @@ int main() {
     std::cout << "A * x = " << A3 * x << "\n";
 
     // A4
-    std::cout << "A4:" << "\n";
+    std::cout << "\n" << "A4:" << "\n";
 
     // Check that det(R) = det(A)
 
@@ -73,7 +73,7 @@ int main() {
     std::cout << "det(R) = " << det_R3 << "\n";
     
     // B1 
-    std::cout << "B1:" << "\n";
+    std::cout << "\n" << "B1:" << "\n";
 
     // Generate square matrix A (reusing the one from before)
     std::cout << "A = " << "\n" << A3 << "\n";

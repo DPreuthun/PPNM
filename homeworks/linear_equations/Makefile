@@ -1,33 +1,39 @@
-# Compiler
 CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -O3
 
-# Compiler flags
-CXXFLAGS = -std=c++17 -Wall -Wextra -g
+# Common source files (NO main files here)
+COMMON = vecmatrix.o qr.o
 
-# Target executable name
-TARGET = main
+# Default target: ONLY compile everything
+all: main time_scaling
 
-# Automatically find all .cc files
-SOURCES = $(wildcard *.cc)
+# -------- Main program --------
+main: main.o $(COMMON)
+	$(CXX) $(CXXFLAGS) $^ -o main
 
-# Replace .cc with .o
-OBJECTS = $(SOURCES:.cc=.o)
+# -------- Timing program --------
+time_scaling: time_scaling.o $(COMMON)
+	$(CXX) $(CXXFLAGS) $^ -o time_scaling
 
-# Default rule (runs when you type "make")
-all: $(TARGET)
-
-# Link object files into final executable
-$(TARGET): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(TARGET)
-
-# Compile each .cc file into .o file
+# Compile rule
 %.o: %.cc
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Clean build files
-clean:
-	rm -f $(OBJECTS) $(TARGET)
+# Timing data generation
+out.times.data: time_scaling
+	@> $@
+	@for N in $$(seq 100 50 600); do \
+		/usr/bin/time --format "$$N %e" --output $@ --append \
+		./time_scaling -size $$N ; \
+	done
 
-# Run program
-run: $(TARGET)
-	./$(TARGET)
+# Plot generation
+plot: out.times.data
+	gnuplot plot.gp
+
+# -------- RUN EVERYTHING --------
+run: main plot
+	./main
+
+clean:
+	rm -f *.o *.pdf *.log out err main time_scaling out.times.data
