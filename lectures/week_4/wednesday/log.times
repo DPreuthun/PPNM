@@ -1,0 +1,13 @@
+\
+		set terminal svg ;\
+		set output "times.svg" ;\
+		set object 1 rectangle from screen 0,0 to screen 1,1 behind fillcolor rgb "white" fillstyle solid 1.0 noborder ;\
+		set xlabel "number of threads" ;\
+		set ylabel "real time" ;\
+		a = 1; b = 10 ;\
+		f(x)=a+b/x ;\
+		fit f(x) "out.times" using 1:2 via a,b ;\
+		plot \
+			"out.times" using 1:2 with linespoints title "times", \
+			f(x) title "fit with 1/n" ;\
+		

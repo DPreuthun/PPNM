@@ -1,0 +1,10 @@
+lngamma(1) = 1.09861
+lngamma(1) = 1.09861 tgamma(1) = 1
+lngamma(2) = 1.09861 tgamma(2) = 1
+lngamma(3) = 1.79176 tgamma(3) = 2
+lngamma(4) = 2.89037 tgamma(4) = 6
+lngamma(5) = 4.27667 tgamma(5) = 24
+lngamma(6) = 5.8861 tgamma(6) = 120
+lngamma(7) = 7.67786 tgamma(7) = 720
+lngamma(8) = 9.62377 tgamma(8) = 5040
+lngamma(9) = 11.7032 tgamma(9) = 40320

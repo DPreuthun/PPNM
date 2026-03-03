@@ -1,0 +1,8 @@
+Hello from hell
+a is equal to b
+1 2 3 
+1 2 3 
+6 6 6 
+parametrized constructor called...
+6 2 3
+destructor called...
