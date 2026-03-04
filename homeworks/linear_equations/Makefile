@@ -1,11 +1,11 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -O3
 
-# Common source files (NO main files here)
+# Object files shared by both programs
 COMMON = vecmatrix.o qr.o
 
-# Default target: ONLY compile everything
-all: main time_scaling
+# Default target: build everything including the plot
+all: main plot
 
 # -------- Main program --------
 main: main.o $(COMMON)
@@ -19,7 +19,7 @@ time_scaling: time_scaling.o $(COMMON)
 %.o: %.cc
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Timing data generation
+# -------- Timing data generation --------
 out.times.data: time_scaling
 	@> $@
 	@for N in $$(seq 100 50 600); do \
@@ -27,13 +27,14 @@ out.times.data: time_scaling
 		./time_scaling -size $$N ; \
 	done
 
-# Plot generation
+# -------- Plot generation --------
 plot: out.times.data
 	gnuplot plot.gp
 
-# -------- RUN EVERYTHING --------
-run: main plot
+# -------- Run main program --------
+run: main
 	./main
 
+# -------- Clean --------
 clean:
-	rm -f *.o *.pdf *.log out err main time_scaling out.times.data
+	rm -f *.o *.pdf *.log main time_scaling out.times.data
