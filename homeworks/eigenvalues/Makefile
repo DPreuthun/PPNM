@@ -1,29 +1,48 @@
-# Compiler
-CXX = g++
+# Allow overriding compiler (portable)
+CXX ?= g++
+CXXFLAGS ?= -std=c++17 -O3 -Wall -Wextra
 
-# Flags
-CXXFLAGS = -std=c++17 -Wall -Wextra -O2
+MAIN_OBJS = main.o jacobi.o vecmatrix.o
+SCALE_OBJS = time_scaling.o jacobi.o vecmatrix.o
 
-# Target executable
-TARGET = main
+# Default target
+all: main time_scaling run scaling plots
 
-# All source files
-SRC = $(wildcard *.cc)
+# ---------- compilation ----------
 
-# Object files
-OBJ = $(SRC:.cc=.o)
+main: $(MAIN_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Default rule
-all: $(TARGET)
+time_scaling: $(SCALE_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Link executable
-$(TARGET): $(OBJ)
-	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
-
-# Compile source files
 %.o: %.cc
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $<
 
-# Clean build files
+# ---------- run hydrogen solver ----------
+
+run: main
+	./main -rmax 10 -dr 0.2 > output.txt
+
+# ---------- scaling test ----------
+
+scaling: time_scaling
+	./time_scaling > scaling.dat
+
+# ---------- plotting ----------
+
+plots:
+	@command -v gnuplot >/dev/null 2>&1 || { \
+		echo "Warning: gnuplot not found, skipping plots."; \
+		exit 0; \
+	}
+	gnuplot plot_wavefunctions.gp
+	gnuplot plot_dr.gp
+	gnuplot plot_rmax.gp
+	gnuplot plot_scaling.gp
+
+# ---------- cleaning ----------
+
 clean:
-	rm -f *.o $(TARGET)
+	rm -f *.o main time_scaling
+	rm -f *.dat *.pdf *.txt
