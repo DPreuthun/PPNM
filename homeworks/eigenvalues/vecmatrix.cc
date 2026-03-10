@@ -1,6 +1,7 @@
 #include "vecmatrix.h"
 #include <iomanip>
 #include <random>
+#include <stdexcept>
 
 namespace pp {
 
@@ -71,6 +72,26 @@ int matrix::row_count() const {
 
 int matrix::col_count() const {
     return cols;
+}
+
+void pp::make_symmetric(matrix& A){
+
+    int n = A.row_count();
+    int m = A.col_count();
+
+    if(n != m){
+        throw std::runtime_error("Matrix must be square to be symmetric");
+    }
+
+    for(int i = 0; i < n; i++){
+        for(int j = i+1; j < n; j++){
+
+            double val = 0.5*(A(i,j) + A(j,i));
+
+            A(i,j) = val;
+            A(j,i) = val;
+        }
+    }
 }
 
 matrix random_int_matrix(int m, int n, int min, int max) {

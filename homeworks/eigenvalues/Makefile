@@ -1,40 +1,29 @@
+# Compiler
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -O3
 
-# Object files shared by both programs
-COMMON = vecmatrix.o qr.o
+# Flags
+CXXFLAGS = -std=c++17 -Wall -Wextra -O2
 
-# Default target: build everything including the plot
-all: main plot
+# Target executable
+TARGET = main
 
-# -------- Main program --------
-main: main.o $(COMMON)
-	$(CXX) $(CXXFLAGS) $^ -o main
+# All source files
+SRC = $(wildcard *.cc)
 
-# -------- Timing program --------
-time_scaling: time_scaling.o $(COMMON)
-	$(CXX) $(CXXFLAGS) $^ -o time_scaling
+# Object files
+OBJ = $(SRC:.cc=.o)
 
-# Compile rule
+# Default rule
+all: $(TARGET)
+
+# Link executable
+$(TARGET): $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
+
+# Compile source files
 %.o: %.cc
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# -------- Timing data generation --------
-out.times.data: time_scaling
-	@> $@
-	@for N in $$(seq 100 50 600); do \
-		/usr/bin/time --format "$$N %e" --output $@ --append \
-		./time_scaling -size $$N ; \
-	done
-
-# -------- Plot generation --------
-plot: out.times.data
-	gnuplot plot.gp
-
-# -------- Run main program --------
-run: main
-	./main
-
-# -------- Clean --------
+# Clean build files
 clean:
-	rm -f *.o *.pdf *.log main time_scaling out.times.data
+	rm -f *.o $(TARGET)
