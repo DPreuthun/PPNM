@@ -62,7 +62,7 @@ public:
     matrix transpose() const;
     double det() const;
 
-    void make_symmetric(matrix& A);
+    void make_symmetric();
 
     vector operator*(const vector& v) const;
     matrix operator*(const matrix& B) const;

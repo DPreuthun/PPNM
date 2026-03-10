@@ -74,22 +74,17 @@ int matrix::col_count() const {
     return cols;
 }
 
-void pp::make_symmetric(matrix& A){
+void pp::matrix::make_symmetric(){
 
-    int n = A.row_count();
-    int m = A.col_count();
+    int n = row_count();
 
-    if(n != m){
-        throw std::runtime_error("Matrix must be square to be symmetric");
-    }
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
 
-    for(int i = 0; i < n; i++){
-        for(int j = i+1; j < n; j++){
+            double val = 0.5*( (*this)(i,j) + (*this)(j,i) );
 
-            double val = 0.5*(A(i,j) + A(j,i));
-
-            A(i,j) = val;
-            A(j,i) = val;
+            (*this)(i,j)=val;
+            (*this)(j,i)=val;
         }
     }
 }
