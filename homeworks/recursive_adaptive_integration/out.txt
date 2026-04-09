@@ -1,0 +1,96 @@
+
+---------A: Recursive open 4-point adaptive integrator--------- 
+
+1) ∫₀¹ ln(x)/sqrt(x) dx
+Result = -3.9999996012
+Exact  = -4.0000000000
+Error  = 0.0000003988
+Calls  = 11084
+OK
+
+2) ∫₀¹ 1/sqrt(x) dx
+Result = 1.9999999892
+Exact  = 2.0000000000
+Error  = 0.0000000108
+Calls  = 5348
+OK
+
+3) ∫₀¹ sqrt(1-x^2) dx
+Result = 0.7853981706
+Exact  = 0.7853981634
+Error  = 0.0000000072
+Calls  = 384
+OK
+
+4) ∫₀¹ sin(x)/x dx
+Result = 0.9460830703
+Exact  = 0.9460830704
+Error  = 0.0000000000
+Calls  = 128
+OK
+
+erf convergence
+
+# acc error
+0.1000000000 0.0001904253
+0.0100000000 0.0001904253
+0.0010000000 0.0000291655
+0.0001000000 0.0000004296
+0.0000100000 0.0000000282
+0.0000010000 0.0000000012
+
+---------B: Clenshaw-Curtis test---------
+
+Integral: ∫₀¹ dx 1/sqrt(x)
+Standard: 1.9999989989 calls = 4656
+CC      : 1.9999999999 calls = 352
+Numpy   : 2.0000000000 calls = 231
+Exact   : 2
+
+Integral: ∫₀¹ dx ln(x)/sqrt(x)
+Standard: -3.9999683684 calls = 9760
+CC      : -3.9999683684 calls = 1844
+Numpy   : -4.0000000000 calls = 315
+Exact   : -4
+
+
+Integral: ∫0->inf dx exp(-x)
+Result = 0.9999998054
+Exact  = 1
+Calls  = 436
+
+Numpy: 
+Result = 1.0000000000
+Exact  = 1
+Calls  = 135
+
+Integral: ∫0->inf dx 1/(1+x^2)
+Result = 1.5707963312
+Exact  = 1.5707963268
+Calls  = 344
+
+Numpy: 
+Result = 1.5707963268
+Exact  = 1.5707963268
+Calls  = 45
+
+---------C: Error estimate test---------
+
+Integral: ∫₀¹ ln(x)/sqrt(x) dx
+Result          = -3.9999683684
+Excat           = -4.0000000000
+Estimated error = 0.0000006138
+Actual error    = 0.0000316316
+
+Integral: ∫₀¹ 1/sqrt(x) dx
+Result          = 1.9999989989
+Excat           = 2.0000000000
+Estimated error = 0.0000006149
+Actual error    = 0.0000010011
+
+Integral: ∫₀¹ sqrt(1-x^2) dx
+Result          = 0.7853981706
+Excat           = 0.7853981634
+Estimated error = 0.0000004223
+Actual error    = 0.0000000072
+
