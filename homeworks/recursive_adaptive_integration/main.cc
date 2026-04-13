@@ -21,13 +21,13 @@ int main() {
         int ncalls = 0;
         auto f = [&](double x) {
             ncalls++;
-            return std::log(x)/std::sqrt(x);
+            return std::sqrt(x);
         };
 
         double result = integrate(f, 0, 1, acc, eps);
-        double exact = -4;
+        double exact = 2/3;
 
-        std::cout << "\n1) ∫₀¹ ln(x)/sqrt(x) dx\n";
+        std::cout << "\n1) ∫₀¹ sqrt(x) dx\n";
         std::cout << "Result = " << result << "\n";
         std::cout << "Exact  = " << exact << "\n";
         std::cout << "Error  = " << std::abs(result - exact) << "\n";
@@ -78,13 +78,13 @@ int main() {
         int ncalls = 0;
         auto f = [&](double x) {
             ncalls++;
-            return std::sin(x)/x;
+            return std::log(x)/std::sqrt(x);
         };
 
         double result = integrate(f, 0, 1, acc, eps);
-        double exact = 0.9460830703671830; // known value
+        double exact = 4; // known value
 
-        std::cout << "\n4) ∫₀¹ sin(x)/x dx\n";
+        std::cout << "\n4) ∫₀¹ ln(x)/sqrt(x) dx\n";
         std::cout << "Result = " << result << "\n";
         std::cout << "Exact  = " << exact << "\n";
         std::cout << "Error  = " << std::abs(result - exact) << "\n";
@@ -108,7 +108,7 @@ int main() {
         std::cout << acc << " " << err << "\n";
     }
 
-    std::cout << "\n---------B: Clenshaw-Curtis test---------\n";
+    std::cout << "\n---------B: Variable transformation quadratures---------\n";
     std::cout << "\n";
 
     // =======================

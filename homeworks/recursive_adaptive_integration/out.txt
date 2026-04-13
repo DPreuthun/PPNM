@@ -1,12 +1,12 @@
 
 ---------A: Recursive open 4-point adaptive integrator--------- 
 
-1) ∫₀¹ ln(x)/sqrt(x) dx
-Result = -3.9999996012
-Exact  = -4.0000000000
-Error  = 0.0000003988
-Calls  = 11084
-OK
+1) ∫₀¹ sqrt(x) dx
+Result = 0.6666666797
+Exact  = 0.0000000000
+Error  = 0.6666666797
+Calls  = 276
+FAIL
 
 2) ∫₀¹ 1/sqrt(x) dx
 Result = 1.9999999892
@@ -22,12 +22,12 @@ Error  = 0.0000000072
 Calls  = 384
 OK
 
-4) ∫₀¹ sin(x)/x dx
-Result = 0.9460830703
-Exact  = 0.9460830704
-Error  = 0.0000000000
-Calls  = 128
-OK
+4) ∫₀¹ ln(x)/sqrt(x) dx
+Result = -3.9999996012
+Exact  = 4.0000000000
+Error  = 7.9999996012
+Calls  = 11084
+FAIL
 
 erf convergence
 
@@ -39,7 +39,7 @@ erf convergence
 0.0000100000 0.0000000282
 0.0000010000 0.0000000012
 
----------B: Clenshaw-Curtis test---------
+---------B: Variable transformation quadratures---------
 
 Integral: ∫₀¹ dx 1/sqrt(x)
 Standard: 1.9999989989 calls = 4656
