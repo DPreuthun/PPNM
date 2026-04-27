@@ -1,0 +1,34 @@
+
+----------- A: Newton's method with numerical Jacobian and back-tracking line-search -----------
+
+Found Rosenbrock minimum: 1, 1
+Exact Rosenbrock minimum: 1, 1
+iter 0, final alpha = 1
+iter 1, final alpha = 1
+iter 2, final alpha = 1
+iter 3, final alpha = 1
+Found Himmelblau minimum: -0.270845, -0.923039
+Exact Rosenbrock minimum: -0.270745, -0.923039
+
+----------- B: Bound states of hydrogen atom with shooting method for boundary value problems -----------
+
+Found E0 = -0.499973
+Exact E0 = -0.5
+
+----------- C: Quadratic interpolation line-search -----------
+
+Demonstrating quadratic line search behavior:
+The step size alpha should NOT decrease by simple halving.
+Instead, it should vary based on quadratic interpolation.
+
+Using Rosenbrock function with initial guess (1.2, 1.0) for demonstration:
+iter 0, final alpha = 1
+iter 1, final alpha = 0.015625
+iter 2, final alpha = 0.0175744
+iter 3, final alpha = 0.0136236
+iter 4, final alpha = 0.0118611
+
+Final solution: 1, 1
+
+Exact solution: 1, 1
+
