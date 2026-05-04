@@ -1,0 +1,31 @@
+
+=========================
+Task A: Ordinary least-squares fit by QR-decomposition
+=========================
+
+Fit results:
+ln(a) = 4.95904
+lambda = 0.17079
+Half-life = 4.05848 days
+modern half-life = 3.6316 days
+
+=========================
+Task B: Uncertainties of the fitting coefficients
+=========================
+
+ln(a) = 4.95904 ± 0.0354101
+lambda = 0.17079 ± 0.00716438
+Half-life = 4.05848 ± 0.170247 days
+modern half-life = 3.6316 days
+
+Comparison with modern value:
+Difference = 0.426879
+Difference / uncertainty ≈ 2.50741 sigma
+Some deviation (>2 sigma), likely due to experimental uncertainty
+
+=========================
+Task C: Evaluation of the quality of the uncertainties of the fit coefficients
+=========================
+
+See fit_taskC_variations.png for parameter variation plots.
+
