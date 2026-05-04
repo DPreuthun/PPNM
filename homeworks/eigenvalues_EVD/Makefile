@@ -1,4 +1,3 @@
-# Allow overriding compiler (portable)
 CXX ?= g++
 CXXFLAGS ?= -std=c++17 -O3 -Wall -Wextra
 
@@ -6,7 +5,7 @@ MAIN_OBJS = main.o jacobi.o vecmatrix.o
 SCALE_OBJS = time_scaling.o jacobi.o vecmatrix.o
 
 # Default target
-all: main time_scaling run scaling plots
+all: run scaling plots
 
 # ---------- compilation ----------
 
@@ -22,16 +21,21 @@ time_scaling: $(SCALE_OBJS)
 # ---------- run hydrogen solver ----------
 
 run: main
-	./main -rmax 10 -dr 0.2 > output.txt
+	@echo "=== Running main (hydrogen solver) ==="
+	./main -rmax 10 -dr 0.2 | tee output.txt
+	@echo "Output also saved to output.txt"
 
 # ---------- scaling test ----------
 
 scaling: time_scaling
-	./time_scaling > scaling.dat
+	@echo "=== Running scaling test ==="
+	./time_scaling | tee scaling.dat
+	@echo "Scaling data saved to scaling.dat"
 
 # ---------- plotting ----------
 
 plots:
+	@echo "=== Generating plots ==="
 	@command -v gnuplot >/dev/null 2>&1 || { \
 		echo "Warning: gnuplot not found, skipping plots."; \
 		exit 0; \
@@ -44,5 +48,6 @@ plots:
 # ---------- cleaning ----------
 
 clean:
+	@echo "=== Cleaning ==="
 	rm -f *.o main time_scaling
-	rm -f *.dat *.pdf *.txt
+	rm -f *.dat *.pdf *.png *.txt

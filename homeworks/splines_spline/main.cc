@@ -32,7 +32,7 @@ void qspline_test(const char* datafile,
         pts << x[i] << " " << y[i] << "\n";
 
     // dense sampling
-    for (double z = x[0]; z <= x[n-1]; z += 0.01) {
+    for (double z = x[0]; z <= x[n-1] + 1e-10; z += 0.01) {
         data << z << " "
              << s.eval(z) << " "
              << s.deriv(z) << " "

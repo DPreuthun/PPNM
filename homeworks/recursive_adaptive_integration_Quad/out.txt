@@ -3,10 +3,10 @@
 
 1) ∫₀¹ sqrt(x) dx
 Result = 0.6666666797
-Exact  = 0.0000000000
-Error  = 0.6666666797
+Exact  = 0.6666666667
+Error  = 0.0000000130
 Calls  = 276
-FAIL
+OK
 
 2) ∫₀¹ 1/sqrt(x) dx
 Result = 1.9999999892
@@ -24,10 +24,10 @@ OK
 
 4) ∫₀¹ ln(x)/sqrt(x) dx
 Result = -3.9999996012
-Exact  = 4.0000000000
-Error  = 7.9999996012
+Exact  = -4.0000000000
+Error  = 0.0000003988
 Calls  = 11084
-FAIL
+OK
 
 erf convergence
 

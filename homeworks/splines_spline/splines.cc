@@ -89,10 +89,16 @@ qspline::qspline(const vector& xs, const vector& ys)
         p[i] = (y[i+1] - y[i]) / dx[i];
     }
 
-    // compute c coefficients
+    // forward pass
     c[0] = 0;
     for (int i = 0; i < n-2; i++) {
         c[i+1] = (p[i+1] - p[i] - c[i]*dx[i]) / dx[i+1];
+    }
+
+    // backward pass
+    c[n-2] /= 2;
+    for (int i = n-3; i >= 0; i--) {
+        c[i] = (p[i+1] - p[i] - c[i+1]*dx[i+1]) / dx[i];
     }
 
     // compute b coefficients

@@ -17,7 +17,7 @@ DATA = interp.dat integ.dat data.dat
 PLOTS = $(patsubst %.gp,%.png,$(GPS))
 
 # Default: build everything
-all: $(TARGET) run plot
+all: run plot
 
 # Link executable
 $(TARGET): $(OBJS)
@@ -29,10 +29,17 @@ $(TARGET): $(OBJS)
 
 # Run program → generates data files
 run: $(TARGET)
-	./$(TARGET)
+	@echo "=== Running main ==="
+	./$(TARGET) | tee program_output.txt
+	@echo "Output saved to program_output.txt"
 
 # Run all gnuplot scripts → generates pngs
 plot: $(GPS)
+	@echo "=== Generating plots ==="
+	@command -v gnuplot >/dev/null 2>&1 || { \
+		echo "Warning: gnuplot not found, skipping plots."; \
+		exit 0; \
+	}
 	@for file in $(GPS); do \
 		echo "Running $$file"; \
 		gnuplot $$file; \
@@ -40,4 +47,5 @@ plot: $(GPS)
 
 # Clean everything
 clean:
-	rm -f *.o $(TARGET) *.dat *.pdf
+	@echo "=== Cleaning ==="
+	rm -f *.o $(TARGET) *.dat *.pdf *.png *.txt

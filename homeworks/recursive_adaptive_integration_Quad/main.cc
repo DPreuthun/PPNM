@@ -25,7 +25,7 @@ int main() {
         };
 
         double result = integrate(f, 0, 1, acc, eps);
-        double exact = 2/3;
+        double exact = 2.0/3.0;
 
         std::cout << "\n1) ∫₀¹ sqrt(x) dx\n";
         std::cout << "Result = " << result << "\n";
@@ -82,7 +82,7 @@ int main() {
         };
 
         double result = integrate(f, 0, 1, acc, eps);
-        double exact = 4; // known value
+        double exact = -4; // known value
 
         std::cout << "\n4) ∫₀¹ ln(x)/sqrt(x) dx\n";
         std::cout << "Result = " << result << "\n";

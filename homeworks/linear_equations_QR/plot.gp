@@ -1,5 +1,5 @@
-set terminal pdf
-set output "qr_scaling.pdf"
+set terminal pngcairo size 800,600 enhanced font 'Arial,10'
+set output "qr_scaling.png"
 
 set xlabel "N"
 set ylabel "Time (seconds)"
