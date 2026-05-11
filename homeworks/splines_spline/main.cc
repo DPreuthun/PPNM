@@ -74,5 +74,7 @@ int main() {
     qspline_test("linear.dat", "linear_pts.dat", 1);
     qspline_test("quad.dat",   "quad_pts.dat",   2);
 
+    std::cout << "See plots for results.\n";
+
     return 0;
 }

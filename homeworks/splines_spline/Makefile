@@ -4,6 +4,7 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -O2
 
 # Target
 TARGET = main
+OUT = output.txt
 
 # Source files
 SRCS = $(wildcard *.cc)
@@ -27,11 +28,11 @@ $(TARGET): $(OBJS)
 %.o: %.cc
 	$(CXX) $(CXXFLAGS) -c $<
 
-# Run program → generates data files
+# Run program → print + save output
 run: $(TARGET)
 	@echo "=== Running main ==="
-	./$(TARGET) | tee program_output.txt
-	@echo "Output saved to program_output.txt"
+	@./$(TARGET) | tee $(OUT)
+	@echo "Output saved to $(OUT)"
 
 # Run all gnuplot scripts → generates pngs
 plot: $(GPS)

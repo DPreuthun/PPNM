@@ -13,6 +13,7 @@ GP := $(wildcard *.gp)
 
 # ===== Executable name =====
 TARGET := main
+OUT := output.txt
 
 # ===== Default target =====
 all: run plot
@@ -25,15 +26,13 @@ $(TARGET): $(OBJ)
 %.o: %.cc
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# ===== Run program → produce + print out.txt =====
+# ===== Run program → print + save output =====
 run: $(TARGET)
 	@echo "Running program..."
-	./$(TARGET) > out.txt
-	@echo "===== out.txt ====="
-	@cat out.txt
+	@./$(TARGET) | tee $(OUT)
 
 # ===== Run all gnuplot scripts =====
-plot: out.txt
+plot: $(OUT)
 	@echo "Running gnuplot scripts..."
 	@for f in $(GP); do \
 		echo "Plotting $$f"; \
@@ -42,7 +41,7 @@ plot: out.txt
 
 # ===== Clean everything =====
 clean:
-	rm -f *.o *.d $(TARGET) out.txt *.png
+	rm -f *.o *.d $(TARGET) $(OUT) *.png
 
 # ===== Include dependency files =====
 -include $(OBJ:.o=.d)

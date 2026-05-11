@@ -6,7 +6,7 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -O2
 SRCS = $(wildcard *.cc)
 OBJS = $(SRCS:.cc=.o)
 TARGET = main
-OUT = out.txt
+OUT = output.txt
 
 # Gnuplot files
 GPFILES = $(wildcard *.gp)
@@ -25,9 +25,8 @@ $(TARGET): $(OBJS)
 
 # Run program
 run: $(TARGET)
-	./$(TARGET) > $(OUT)
 	@echo "===== Program Output ====="
-	@cat $(OUT)
+	@./$(TARGET) | tee $(OUT)
 
 # Run all gnuplot scripts
 plot: $(GPFILES)

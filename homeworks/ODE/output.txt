@@ -1,0 +1,92 @@
+
+=======================================
+Part A: Embedded rule Runge-Kutta ODE integrator
+=======================================
+
+**** TEST 1: Harmonic oscillator
+Equation: u'' = -u
+See oscillator.png
+
+Initial conditions:
+u(0)=1
+u'(0)=0
+
+Accepted steps: 533
+Numerical u(20) = 0.403831
+Exact cos(20)   = 0.408082
+
+**** TEST 2: Damped oscillator
+Equation: u'' + b*u' + c*u = 0
+See damped.png
+
+Parameters:
+b = 0.25
+c = 5.0
+
+Initial conditions:
+u(0)=1
+u'(0)=0
+
+Accepted steps: 1170
+Final numerical value:
+u(20) numerical = 0.0663469
+u(20) exact     = 0.0672351
+
+**** TEST 3: SciPy odeint pendulum example
+Equation:
+theta'' + b*theta' + c*sin(theta) = 0
+See pendulum.png
+
+Parameters:
+b = 0.25
+c = 5.0
+
+Initial conditions:
+theta(0) =  0.1
+omega(0) = 0
+
+Accepted steps: 190
+Final values at t=10:
+theta(10) numerical = -0.0269734
+theta(10) exact     = -0.0275886
+
+omega(10) numerical = 0.0244519
+omega(10) exact     = 0.021069
+
+=======================================
+Part B: Relativistic planetary orbit
+=======================================
+
+**** CASE 1: Newtonian circular orbit
+See circle.png
+
+epsilon = 0
+u(0)=1
+u'(0)=0
+Accepted steps: 17
+
+**** CASE 2: Newtonian elliptical orbit
+See ellipse.png
+
+epsilon = 0
+u(0)=1
+u'(0)=-0.5
+Accepted steps: 525925
+
+**** CASE 3: Relativistic precession
+See precession.png
+
+epsilon = 0.01
+u(0)=1
+u'(0)=-0.5
+Accepted steps: 7113
+
+=======================================
+Part C: Three-body figure-8 orbit
+=======================================
+
+Integrated figure-8 solution
+See threebody.png
+
+Accepted steps: 721789
+

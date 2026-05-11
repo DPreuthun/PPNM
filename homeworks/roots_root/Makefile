@@ -10,7 +10,7 @@ OBJS = $(SRCS:.cc=.o)
 TARGET = main
 
 # Output file
-OUT = out.txt
+OUT = output.txt
 
 # Plot outputs
 PLOTS = wave.png conv_rmax.png conv_rmin.png conv_h.png
@@ -28,7 +28,7 @@ $(TARGET): $(OBJS)
 %.o: %.cc
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Run program (generates data files)
+# Run program (print + save output)
 run: $(TARGET)
 	@echo "Running program..."
 	@./$(TARGET) | tee $(OUT)

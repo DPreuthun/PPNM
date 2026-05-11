@@ -4,6 +4,10 @@ CXXFLAGS ?= -std=c++17 -O3 -Wall -Wextra
 MAIN_OBJS = main.o jacobi.o vecmatrix.o
 SCALE_OBJS = time_scaling.o jacobi.o vecmatrix.o
 
+# Output files
+MAIN_OUTPUT = output.txt
+SCALING_OUTPUT = scaling.dat
+
 # Default target
 all: run scaling plots
 
@@ -22,15 +26,15 @@ time_scaling: $(SCALE_OBJS)
 
 run: main
 	@echo "=== Running main (hydrogen solver) ==="
-	./main -rmax 10 -dr 0.2 | tee output.txt
-	@echo "Output also saved to output.txt"
+	@./main -rmax 10 -dr 0.2 | tee $(MAIN_OUTPUT)
+	@echo "Output also saved to $(MAIN_OUTPUT)"
 
 # ---------- scaling test ----------
 
 scaling: time_scaling
 	@echo "=== Running scaling test ==="
-	./time_scaling | tee scaling.dat
-	@echo "Scaling data saved to scaling.dat"
+	@./time_scaling | tee $(SCALING_OUTPUT)
+	@echo "Scaling data saved to $(SCALING_OUTPUT)"
 
 # ---------- plotting ----------
 
@@ -40,10 +44,10 @@ plots:
 		echo "Warning: gnuplot not found, skipping plots."; \
 		exit 0; \
 	}
-	gnuplot plot_wavefunctions.gp
-	gnuplot plot_dr.gp
-	gnuplot plot_rmax.gp
-	gnuplot plot_scaling.gp
+	@gnuplot plot_wavefunctions.gp
+	@gnuplot plot_dr.gp
+	@gnuplot plot_rmax.gp
+	@gnuplot plot_scaling.gp
 
 # ---------- cleaning ----------
 

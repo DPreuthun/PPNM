@@ -4,6 +4,7 @@ CXXFLAGS = -std=c++17 -O2 -Wall
 
 # Executable name
 TARGET = mc
+OUT = output.txt
 
 # Source files
 SRCS = $(wildcard *.cc)
@@ -26,10 +27,10 @@ $(TARGET): $(OBJS)
 # Run program (print + save output)
 run: $(TARGET)
 	@echo "Running program..."
-	./$(TARGET) | tee out.txt
+	@./$(TARGET) | tee $(OUT)
 
 # Run all gnuplot scripts (each .gp creates its own .png)
-plots: out.txt
+plots: $(OUT)
 	@echo "Generating plots..."
 	@if [ -z "$(GPFILES)" ]; then \
 		echo "No .gp files found."; \
@@ -43,7 +44,7 @@ plots: out.txt
 # Final message
 done:
 	@echo "Done!"
-	@echo "→ Output file: out.txt"
+	@echo "→ Output file: $(OUT)"
 	@echo "→ PNG plots generated from all .gp files"
 
 # Clean everything

@@ -5,12 +5,13 @@ SRC = $(wildcard *.cc)
 OBJ = $(SRC:.cc=.o)
 
 TARGET = main
+OUTPUT = output.txt
 
 GP = $(wildcard *.gp)
 
 all: $(TARGET)
 	@echo "Running program..."
-	@./$(TARGET)
+	@./$(TARGET) | tee $(OUTPUT)
 
 	@echo "Generating plots..."
 	@for gp in $(GP); do gnuplot $$gp; done
