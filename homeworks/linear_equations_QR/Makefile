@@ -3,6 +3,10 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -O3
 
 COMMON = vecmatrix.o qr.o
 
+# Output files
+OUT = output.txt
+TIMES = out.times.data
+
 # Default target
 all: run plot
 
@@ -21,10 +25,11 @@ time_scaling: time_scaling.o $(COMMON)
 # -------- Run main program --------
 run: main
 	@echo "=== Running main ==="
-	./main
+	@./main | tee $(OUT)
+	@echo "Output saved to $(OUT)"
 
 # -------- Timing data generation --------
-out.times.data: time_scaling
+$(TIMES): time_scaling
 	@echo "=== Generating timing data ==="
 	@> $@
 	@for N in $$(seq 100 50 600); do \
@@ -35,10 +40,10 @@ out.times.data: time_scaling
 	@echo "Timing data saved to $@"
 
 # -------- Plot generation --------
-plot: out.times.data
+plot: $(TIMES)
 	@echo "=== Generating plot ==="
-	gnuplot plot.gp
+	@gnuplot plot.gp
 
 # -------- Clean --------
 clean:
-	rm -f *.o *.pdf *.log main time_scaling out.times.data
+	rm -f *.o *.pdf *.log main time_scaling $(TIMES) $(OUT)
