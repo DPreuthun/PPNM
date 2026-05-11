@@ -1,0 +1,32 @@
+#include "approx.h"
+
+#include <cmath>
+#include <algorithm>
+
+bool approx(double a, double b, double acc, double eps) {
+    double diff = std::abs(a - b);
+
+    if (diff <= acc) {
+        return true;
+    }
+
+    double max_ab = std::max(std::abs(a), std::abs(b));
+
+    return diff <= eps * max_ab;
+}
+
+bool approx(std::complex<double> a,
+            std::complex<double> b,
+            double acc,
+            double eps) {
+
+    double diff = std::abs(a - b);
+
+    if (diff <= acc) {
+        return true;
+    }
+
+    double max_ab = std::max(std::abs(a), std::abs(b));
+
+    return diff <= eps * max_ab;
+}
