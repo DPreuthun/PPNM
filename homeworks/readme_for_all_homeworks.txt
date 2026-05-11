@@ -6,4 +6,4 @@ The results are then printed to "output.txt" and will also be printed in termina
 
 All plots will be created as .png.
 
------------ All .cc, .h, .gp files are written using chatgpt. All main.cc files are not. -----------
+----------- All .cc, .h, .gp files and Makefiles are written using chatgpt. All main.cc files are not. -----------
