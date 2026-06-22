@@ -17,6 +17,13 @@ The timing data are written to a file and automatically plotted using gnuplot, p
 
 
 
+######## Self-evaluation ########
+
+9/10
+
+The project meets the requirements of the assignment and produces accurate results. The implementation is modular and well-structured, with only minor room for improvement in optimization and numerical accuracy.
+
+
 ######## To run the program ########
 
 In terminal do: "make clean" ---> "make run"
