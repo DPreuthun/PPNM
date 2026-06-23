@@ -22,25 +22,12 @@ Residual norm       : 0.0150572600982
 =========================================
 Timing study
 =========================================
-N =   50   Avg Time = 0.0003389047 s   Avg Iter = 153
-N =  100   Avg Time = 0.0024974393 s   Avg Iter = 250
-N =  150   Avg Time = 0.0049496321 s   Avg Iter = 228
-N =  200   Avg Time = 0.0079426007 s   Avg Iter = 195
-N =  250   Avg Time = 0.0114882909 s   Avg Iter = 170
-N =  300   Avg Time = 0.0149806683 s   Avg Iter = 152
-N =  350   Avg Time = 0.0180663229 s   Avg Iter = 137
-N =  400   Avg Time = 0.0222367813 s   Avg Iter = 126
-N =  450   Avg Time = 0.0260959513 s   Avg Iter = 117
-N =  500   Avg Time = 0.0297346881 s   Avg Iter = 109
-N =  550   Avg Time = 0.0339085963 s   Avg Iter = 102
-N =  600   Avg Time = 0.0383349183 s   Avg Iter = 97
-N =  650   Avg Time = 0.042693353 s   Avg Iter = 92
-N =  700   Avg Time = 0.047413658 s   Avg Iter = 87
-N =  750   Avg Time = 0.0519756811 s   Avg Iter = 83
-N =  800   Avg Time = 0.0569240004 s   Avg Iter = 80
-N =  850   Avg Time = 0.0618927574 s   Avg Iter = 77
-N =  900   Avg Time = 0.0667256629 s   Avg Iter = 74
-N =  950   Avg Time = 0.0711410002 s   Avg Iter = 71
-N = 1000   Avg Time = 0.0769264341 s   Avg Iter = 69
+N = 1000   Avg Time = 0.0758077486667 s   Avg Iter = 69
+N = 3000   Avg Time = 0.397597295 s   Avg Iter = 34
+N = 5000   Avg Time = 0.806017153667 s   Avg Iter = 24
+N = 7000   Avg Time = 1.251982403 s   Avg Iter = 19
+N = 9000   Avg Time = 1.885654583 s   Avg Iter = 17
+
+Largest practical matrix size (2 second limit): N ≈ 9000
 
 Timing plot written to timing.png

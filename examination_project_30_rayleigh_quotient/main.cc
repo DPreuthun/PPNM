@@ -197,10 +197,12 @@ int main()
 
     Timer timer;
 
-    const int samples = 10;
+    const double targetTime = 2.0;   // seconds
+    int largestPracticalN = 0;
 
-for (int N = 50; N <= 1000; N += 50)
+for (int N = 1000; ; N += 2000)
     {
+        int samples = (N < 500) ? 10 : 3;
         double totalTime = 0.0;
         double totalIterations = 0.0;
 
@@ -217,6 +219,16 @@ for (int N = 50; N <= 1000; N += 50)
         }
 
         double averageTime = totalTime / samples;
+
+        if (averageTime <= targetTime)
+        {
+            largestPracticalN = N;
+        }
+        else
+        {
+            break;
+        }
+
         double averageIterations = totalIterations / samples;
 
         timing
@@ -249,6 +261,18 @@ for (int N = 50; N <= 1000; N += 50)
 
     timing.close();
 
+    cout << "\nLargest practical matrix size ("
+        << targetTime
+        << " second limit): N ≈ "
+        << largestPracticalN
+        << endl;
+
+    out << "\nLargest practical matrix size ("
+        << targetTime
+        << " second limit): N ≈ "
+        << largestPracticalN
+        << endl;
+
     //--------------------------------------------------------
     // Gnuplot script
     //--------------------------------------------------------
@@ -265,7 +289,7 @@ for (int N = 50; N <= 1000; N += 50)
     gp << "set ylabel 'Average runtime (s)'\n";
     gp << "set title 'Time scaling of Rayleigh quotient minimization'\n";
 
-    gp << "set xtics 100\n";
+    gp << "set xtics 2000\n";
     gp << "set format y '%.2f'\n";
 
     gp << "plot 'timing.dat' using 1:2 "
